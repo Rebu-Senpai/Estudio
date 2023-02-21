@@ -1,0 +1,7 @@
+Base de Datos --> 19
+
+Redes --> 23
+
+Metodologia Programacion --> 17
+
+Estructura Computadores --> 26
