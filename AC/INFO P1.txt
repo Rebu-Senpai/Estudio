@@ -1,0 +1,9 @@
+mov al, 3
+int 10h #Para cargar la memoria de video
+
+mov ax, 0B800h  
+mov es, ax #para inicializar ES
+
+xor di, di #SOLO si quiero inicializar di a 0
+
+mov es:[di], al
