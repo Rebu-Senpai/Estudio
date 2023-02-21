@@ -1,0 +1,31 @@
+.MODEL SMALL
+
+.STACK 100h
+
+.DATA
+
+	char db '-'
+
+.CODE
+
+	mov ax, seg char
+    mov ds, ax 
+
+    mov ax, 0b800h ; lleva el 0 delante para no leer como una etiqueta
+    mov es, ax ;mueve acumulador a segmento extra
+    
+    mov ah, 101b ; Cambia de color, Magenta 
+    
+bucle:                               
+
+    mov al, char
+    mov es:[si], ax  
+    
+    inc si
+    
+    jmp bucle
+    
+    
+    mov ax,4c00h
+	int 21h
+END
