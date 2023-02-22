@@ -4,9 +4,9 @@
 
 .DATA
 
-	char db '-'
+	char db 'x'
 	espacio db ' '
-	newchar db 'x'
+
 
 .CODE
 
@@ -125,7 +125,7 @@ VerticalRdi:
     
 bucle2:                               
 
-    mov al, newchar
+    mov al, char
     mov es:[si], al               
     
     inc si 
