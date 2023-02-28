@@ -20,10 +20,29 @@
     mov ax, 0A000h ; lleva el 0 delante para no leer como una etiqueta
     mov es, ax ;mueve acumulador a segmento extra
     
-    
+    mov bx, 50
     xor si, si 
     xor di, di
+
+    jmp bucle
+
+SumaV:
     
+    add bx, 16000
+    jmp Vertical
+
+RestaV:
+    sub bx, 16000
+    jmp VerticalR
+    
+Suma: 
+    add bx, 50
+    jmp bucle
+    
+Resta:
+    sub bx, 50
+    jmp Retroceso
+   
 bucle:                               
 
     mov al, char
@@ -31,8 +50,8 @@ bucle:
     
     inc si 
     
-    cmp si, 50       
-    jz Vertical
+    cmp si, bx       
+    jz SumaV
     
        
     jnz bucle
@@ -43,8 +62,8 @@ Vertical:
     
     add si, 320
     
-    cmp si, 16050
-    jz Retroceso  
+    cmp si, bx
+    jz Resta  
     
     jnz Vertical 
     
@@ -55,8 +74,8 @@ Retroceso:
     
     dec si
     
-    cmp si, 16000
-    jz VerticalR
+    cmp si, bx
+    jz RestaV
     
     jnz Retroceso    
     
@@ -68,109 +87,13 @@ VerticalR:
     sub si, 320
     
     cmp si, 0
-    jz bucledi  
+    jz Fin
     
     jnz VerticalR 
     
     
     
-bucledi:                               
-
-    mov al, espacio
-    mov es:[di], al               
-    
-    inc di 
-    
-    cmp di, 50       
-    jz Verticaldi
-    
-       
-    jnz bucledi
-    
-Verticaldi:
-    
-    mov es:[di], al 
-    
-    add di, 320
-    
-    cmp di, 16050
-    jz Retrocesodi  
-    
-    jnz Verticaldi 
-    
-
-Retrocesodi:
-    
-    mov es:[di], al
-    
-    dec di
-    
-    cmp di, 16000
-    jz VerticalRdi
-    
-    jnz Retrocesodi    
-    
-    
-VerticalRdi:  
-
-    mov es:[di], al 
-    
-    sub di, 320
-    
-    cmp di, 0 
-    
-    jnz VerticalRdi 
-    
-    
-    mov si, 20   
-    
-bucle2:                               
-
-    mov al, char
-    mov es:[si], al               
-    
-    inc si 
-    
-    cmp si, 70       
-    jz Vertical2
-    
-       
-    jnz bucle2
-    
-Vertical2:
-    
-    mov es:[si], al 
-    
-    add si, 320
-    
-    cmp si, 16070
-    jz Retroceso2  
-    
-    jnz Vertical2 
-    
-
-Retroceso2:
-    
-    mov es:[si], al
-    
-    dec si
-    
-    cmp si, 16020
-    jz VerticalR2
-    
-    jnz Retroceso2    
-    
-    
-VerticalR2:  
-
-    mov es:[si], al 
-    
-    sub si, 320
-    
-    cmp si, 20
-    jz Fin  
-    
-    jnz VerticalR2    
+   
     
     
         
