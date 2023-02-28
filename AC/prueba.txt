@@ -1,0 +1,97 @@
+bucledi:                               
+
+    mov al, espacio
+    mov es:[di], al               
+    
+    inc di 
+    
+    cmp di, 50       
+    jz Verticaldi
+    
+       
+    jnz bucledi
+    
+Verticaldi:
+    
+    mov es:[di], al 
+    
+    add di, 320
+    
+    cmp di, 16050
+    jz Retrocesodi  
+    
+    jnz Verticaldi 
+    
+
+Retrocesodi:
+    
+    mov es:[di], al
+    
+    dec di
+    
+    cmp di, 16000
+    jz VerticalRdi
+    
+    jnz Retrocesodi    
+    
+    
+VerticalRdi:  
+
+    mov es:[di], al 
+    
+    sub di, 320
+    
+    cmp di, 0 
+    
+    jnz VerticalRdi 
+    
+    
+    mov si, 20   
+    
+bucle2:                               
+
+    mov al, char
+    mov es:[si], al               
+    
+    inc si 
+    
+    cmp si, 70       
+    jz Vertical2
+    
+       
+    jnz bucle2
+    
+Vertical2:
+    
+    mov es:[si], al 
+    
+    add si, 320
+    
+    cmp si, 16070
+    jz Retroceso2  
+    
+    jnz Vertical2 
+    
+
+Retroceso2:
+    
+    mov es:[si], al
+    
+    dec si
+    
+    cmp si, 16020
+    jz VerticalR2
+    
+    jnz Retroceso2    
+    
+    
+VerticalR2:  
+
+    mov es:[si], al 
+    
+    sub si, 320
+    
+    cmp si, 20
+    jz Fin  
+    
+    jnz VerticalR2 
