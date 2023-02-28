@@ -5,7 +5,6 @@
 .DATA
 
 	char db 'x'
-	espacio db ' '
 
 
 .CODE
@@ -22,7 +21,7 @@
     
     mov bx, 50
     xor si, si 
-    xor di, di
+    mov di, 50
 
     jmp bucle
 
@@ -42,6 +41,12 @@ Suma:
 Resta:
     sub bx, 50
     jmp Retroceso
+
+    
+Inicio:
+    add di, 10
+    mov bx, di  
+ 
    
 bucle:                               
 
@@ -86,19 +91,13 @@ VerticalR:
     
     sub si, 320
     
-    cmp si, 0
-    jz Fin
+    cmp si, bx
     
-    jnz VerticalR 
+    jnz VerticalR
+ 
     
-    
-    
-   
-    
-    
-        
-    
-Fin:      
+    jmp Inicio
+     
     
     mov ax,4c00h
 	int 21h
